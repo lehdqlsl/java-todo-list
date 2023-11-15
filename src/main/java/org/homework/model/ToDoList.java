@@ -3,15 +3,26 @@ package org.homework.model;
 import java.util.HashMap;
 
 public class ToDoList {
-    private HashMap<Integer, String> toDoMap = new HashMap<>();
-    private int idCount = 1;
+    private HashMap<Integer, String> toDoMap;
+    private int id;
 
-    public void addList(){
-
+    public ToDoList(){
+        this.toDoMap = new HashMap<>();
+        this.id = 1;
     }
 
-    public void deleteList(){
+    public int addList(String addInput){
+        toDoMap.put(id, addInput);
+        id++;
+        return id - 1;
+    }
 
+    public int deleteList(int deleteNumber){
+        if(toDoMap.containsKey(deleteNumber)){
+            toDoMap.remove(deleteNumber);
+            return deleteNumber;
+        }
+        return -1;
     }
 
     public void viewList(){

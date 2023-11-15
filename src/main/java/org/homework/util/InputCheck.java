@@ -22,4 +22,9 @@ public class InputCheck {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
     }
+
+    public int checkDeleteNumber(String deleteInput){
+        int deleteNumber = checkValidNumber(deleteInput);
+        return deleteNumber;
+    }
 }
