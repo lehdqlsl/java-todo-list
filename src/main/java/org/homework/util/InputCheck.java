@@ -23,8 +23,8 @@ public class InputCheck {
         }
     }
 
-    public int checkDeleteNumber(String deleteInput){
-        int deleteNumber = checkValidNumber(deleteInput);
-        return deleteNumber;
+    public int checkInputNumber(String inputNumber){
+        int inputId = checkValidNumber(inputNumber);
+        return inputId;
     }
 }

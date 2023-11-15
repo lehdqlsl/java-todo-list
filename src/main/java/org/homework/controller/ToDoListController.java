@@ -24,7 +24,7 @@ public class ToDoListController {
             return true;
         }
         if (selectNumber == 3) {
-            toDoList.viewList();
+            doView();
             return true;
         }
         if (selectNumber == 4) {
@@ -39,8 +39,14 @@ public class ToDoListController {
     }
 
     public void doDelete() {
-        int deleteNumber = inputView.deleteInput();
+        int deleteNumber = inputView.inputNumber();
         int id = toDoList.deleteList(deleteNumber);
         outputView.printDelete(id);
+    }
+
+    public void doView() {
+        int viewNumber = inputView.inputNumber();
+        int id = toDoList.viewList(viewNumber);
+        outputView.printView(id, toDoList.getToDoMap());
     }
 }
