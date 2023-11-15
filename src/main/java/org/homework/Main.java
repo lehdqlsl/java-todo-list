@@ -5,6 +5,9 @@ import org.homework.controller.ToDoListController;
 public class Main {
     public static void main(String[] args) {
         ToDoListController toDoListController = new ToDoListController();
-        toDoListController.run();
+        boolean stop = true;
+        while (stop) {
+            stop = toDoListController.run();
+        }
     }
 }

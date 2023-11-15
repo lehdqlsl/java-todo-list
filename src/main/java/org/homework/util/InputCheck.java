@@ -13,13 +13,13 @@ public class InputCheck {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("잘못된 입력입니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     public void checkRangeNumber(int selectNumber) {
         if(selectNumber > MAX_SELECT_NUMBER || selectNumber < MIN_SELECT_NUMBER){
-            throw new IllegalArgumentException("잘못된 입력입니다.");
+            throw new IllegalArgumentException();
         }
     }
 
