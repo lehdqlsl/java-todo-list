@@ -14,7 +14,7 @@ public class InputView {
                 System.out.println("옵션을 선택하세요: 1.추가, 2.삭제, 3.조회, 4.종료");
                 return inputCheck.checkSelectNumber(scanner.nextLine());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("잘못된 입력입니다.");
             }
         }
     }
@@ -30,7 +30,7 @@ public class InputView {
                 System.out.println("ID를 입력해 주세요");
                 return inputCheck.checkInputNumber(scanner.nextLine());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("잘못된 입력입니다.");
             }
         }
     }
