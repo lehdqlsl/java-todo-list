@@ -18,4 +18,20 @@ public class InputView {
             }
         }
     }
+
+    public String addInput() {
+        System.out.println("할 일을 입력해 주세요");
+        return scanner.nextLine();
+    }
+
+    public int deleteInput() {
+        while (true) {
+            try {
+                System.out.println("삭제할 ID를 입력해 주세요");
+                return inputCheck.checkDeleteNumber(scanner.nextLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

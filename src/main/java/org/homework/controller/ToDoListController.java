@@ -2,31 +2,45 @@ package org.homework.controller;
 
 import org.homework.model.ToDoList;
 import org.homework.view.InputView;
+import org.homework.view.OutputView;
 
 public class ToDoListController {
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final ToDoList toDoList = new ToDoList();
+
     public boolean run() {
         int selectNumber = inputView.selectOption();
         return moveOption(selectNumber);
     }
 
     public boolean moveOption(int selectNumber) {
-        if(selectNumber == 1){
-            toDoList.addList();
+        if (selectNumber == 1) {
+            doAdd();
             return true;
         }
-        if(selectNumber == 2){
-            toDoList.deleteList();
+        if (selectNumber == 2) {
+            doDelete();
             return true;
         }
-        if(selectNumber == 3){
+        if (selectNumber == 3) {
             toDoList.viewList();
             return true;
         }
-        if(selectNumber == 4){
-            
+        if (selectNumber == 4) {
+
         }
         return false;
+    }
+
+    public void doAdd() {
+        int id = toDoList.addList(inputView.addInput());
+        outputView.printAdd(id);
+    }
+
+    public void doDelete() {
+        int deleteNumber = inputView.deleteInput();
+        int id = toDoList.deleteList(deleteNumber);
+        outputView.printDelete(id);
     }
 }
