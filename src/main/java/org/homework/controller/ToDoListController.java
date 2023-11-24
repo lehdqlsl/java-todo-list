@@ -1,5 +1,6 @@
 package org.homework.controller;
 
+import org.homework.enums.Options;
 import org.homework.model.ToDoList;
 import org.homework.view.InputView;
 import org.homework.view.OutputView;
@@ -10,24 +11,24 @@ public class ToDoListController {
     private final ToDoList toDoList = new ToDoList();
 
     public boolean run() {
-        int selectNumber = inputView.selectOption();
-        return moveOption(selectNumber);
+        Options option = inputView.selectOption();
+        return moveOption(option);
     }
 
-    public boolean moveOption(int selectNumber) {
-        if (selectNumber == 1) {
+    public boolean moveOption(Options option) {
+        if (Options.ADD.equals(option)) {
             doAdd();
             return true;
         }
-        if (selectNumber == 2) {
+        if (Options.DELETE.equals(option)) {
             doDelete();
             return true;
         }
-        if (selectNumber == 3) {
+        if (Options.VIEW.equals(option)) {
             doView();
             return true;
         }
-        if (selectNumber == 4) {
+        if (Options.EXIT.equals(option)) {
             stop();
         }
         return false;
@@ -39,14 +40,12 @@ public class ToDoListController {
     }
 
     public void doDelete() {
-        int deleteNumber = inputView.inputNumber();
-        int id = toDoList.deleteList(deleteNumber);
+        int id = toDoList.deleteList(inputView.inputNumber());
         outputView.printDelete(id);
     }
 
     public void doView() {
-        int viewNumber = inputView.inputNumber();
-        int id = toDoList.viewList(viewNumber);
+        int id = toDoList.viewList(inputView.inputNumber());
         outputView.printView(id, toDoList.getToDoMap());
     }
 

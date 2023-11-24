@@ -2,7 +2,7 @@ package org.homework.enums;
 
 import java.util.Arrays;
 
-public enum Option {
+public enum Options {
     ADD("1"),
     DELETE("2"),
     VIEW("3"),
@@ -10,13 +10,13 @@ public enum Option {
 
     private final String optionNumber;
 
-    Option(String optionNumber) {
+    Options(String optionNumber) {
         this.optionNumber = optionNumber;
     }
 
-    static Option getOption(String inputNumber) {
+    public static Options getOption(String inputNumber) {
         return Arrays.stream(values())
-                .filter(option -> option.optionNumber.equals(inputNumber))
+                .filter(options -> options.optionNumber.equals(inputNumber))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }

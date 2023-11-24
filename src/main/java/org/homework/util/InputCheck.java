@@ -1,12 +1,10 @@
 package org.homework.util;
 
 public class InputCheck {
-    private static final int MIN_SELECT_NUMBER = 1;
-    private static final int MAX_SELECT_NUMBER = 4;
-    public int checkSelectNumber(String input) {
-        int selectNumber = checkValidNumber(input);
-        checkRangeNumber(selectNumber);
-        return selectNumber;
+
+    public int checkInputNumber(String inputNumber){
+        int inputId = checkValidNumber(inputNumber);
+        return inputId;
     }
 
     public int checkValidNumber(String input) {
@@ -15,16 +13,5 @@ public class InputCheck {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public void checkRangeNumber(int selectNumber) {
-        if(selectNumber > MAX_SELECT_NUMBER || selectNumber < MIN_SELECT_NUMBER){
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public int checkInputNumber(String inputNumber){
-        int inputId = checkValidNumber(inputNumber);
-        return inputId;
     }
 }
