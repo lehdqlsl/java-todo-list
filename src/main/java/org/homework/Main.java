@@ -1,3 +1,5 @@
+package org.homework;
+
 import java.util.Scanner;
 
 public class Main {
@@ -22,14 +24,11 @@ public class Main {
                         todoList.getTodoItem();
                         break;
                     case 4:
-                        todoList.completeTodoItem();
-                        break;
-                    case 5:
                         run = false;
                         System.out.println("프로그램 종료");
                         break;
                     default:
-                        System.out.println("1~5 사이의 숫자만 입력해주세요.");
+                        System.out.println("1~4 사이의 숫자만 입력해주세요.");
                         break;
                 }
 
