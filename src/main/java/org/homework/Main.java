@@ -1,47 +1,40 @@
 package org.homework;
-
-import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
     public enum SelectOption {
-        ADD(1), DELETE(2), REFER(3);
-        final private int num;
+        ADD(1), DELETE(2), REFER(3), COMPLETE(4), Entire(5), SORT(6);
+        private final int option;
 
-        public int getNum() {
-
-            return num;
+        SelectOption(int option) {
+            this.option = option;
         }
-        SelectOption(int num) {
-
-            this.num = num;
+        public int option() {
+            return option;
         }
     }
 
-    public static void main(String[] args)  {
-
+    public static void main(String[] args) {
         ToDoManager toDoManager = new ToDoManager();
+        Scanner user = new Scanner(System.in);
+        boolean isTrue = true;
 
-        Scanner user = new Scanner(System.in); // 사용자에게 값 입력받을 때 사용
-        boolean isTrue = true; //while문에 true/false값 대입, default는 true
 
-        try{
+        try {
             while (isTrue) {
-
                 System.out.println("옵션을 선택해주세요.");
-                System.out.println("1.추가");
-                System.out.println("2.삭제");
-                System.out.println("3.조회");
-                System.out.println("4.종료");
+                System.out.println(" 1 : 추가");
+                System.out.println(" 2 : 삭제");
+                System.out.println(" 3 : 조회");
+                System.out.println(" 4 : 완료");
+                System.out.println(" 5 : 전체조회");
+                System.out.println(" 6 : 정렬");
+                System.out.println(" 7 : 종료");
 
-
-                int selectOption = user.nextInt();
+                int option = user.nextInt();
                 user.nextLine();
 
-                switch (selectOption) {
-
+                switch (option) {
                     case 1:
                         System.out.println("추가 할 일을 입력해주세요.");
                         String todo = user.nextLine();
@@ -61,23 +54,32 @@ public class Main {
                         break;
 
                     case 4:
+                        System.out.println("완료로 변경하고 싶은 할 일의 ID를 입력해주세요.");
+                        ID = user.nextInt();
+                        toDoManager.completeToDo(ID);
+                        break;
 
+                    case 5:
+                        System.out.println("<할 일 목록>");
+                        toDoManager.entireToDo();
+                        break;
+
+                    case 6:
+                        System.out.println("정렬 방식을 선택해주세요.");
+                        //int sort = user.nextInt();
+                        toDoManager.sortTodoList();
+                        break;
+                    case 7:
                         isTrue = false;
                         System.out.println("프로그램을 종료합니다.");
                         break;
-
-                    default:
-                        System.out.println("1~4 중에서만 입력가능합니다.다시 시도해주세요.");
-
                 }
             }
-
-        } catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e){
             e.printStackTrace();
-            System.out.println("문자는 입력할 수 없습니다. 입력값을 확인 후 프로그램을 재실행해주세요.");
+            System.out.println("잘못된 입력사항입니다. 입력 주의사항을 확인 후 다시 실행해주세요.");
             user.close();
         }
-
     }
 }
 
