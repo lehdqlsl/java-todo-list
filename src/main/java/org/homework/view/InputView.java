@@ -39,7 +39,7 @@ public class InputView {
     public int selectViewOption(){
         while (true){
             try{
-                System.out.println("단일조회는 1번, 전체조회는 2번을 눌러주세요");
+                System.out.println("단일조회는 1번, 전체조회는 2번, 키워드 조회는 3번을 눌러주세요");
                 return inputCheck.checkViewOptionSelect(scanner.nextLine());
             }catch (IllegalArgumentException e){
                 System.out.println("잘못된 입력입니다.");
@@ -56,5 +56,10 @@ public class InputView {
                 System.out.println("잘못된 입력입니다.");
             }
         }
+    }
+
+    public String inputKeyword(){
+        System.out.println("목록을 조회할 키워드를 입력해 주세요");
+        return scanner.nextLine();
     }
 }

@@ -26,7 +26,7 @@ public class InputCheck {
     }
 
     public void checkRangeViewOptionNumber(int viewOptionNumber){
-        if(!(viewOptionNumber == 1 || viewOptionNumber == 2)){
+        if(!(viewOptionNumber >= 1 && viewOptionNumber <= 3)){
             throw new IllegalArgumentException();
         }
     }
