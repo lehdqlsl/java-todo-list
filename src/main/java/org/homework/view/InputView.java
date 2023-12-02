@@ -35,4 +35,15 @@ public class InputView {
             }
         }
     }
+
+    public int viewOptionSelect(){
+        while (true){
+            try{
+                System.out.println("단일조회는 1번, 전체조회는 2번을 눌러주세요");
+                return inputCheck.checkViewOptionSelect(scanner.nextLine());
+            }catch (IllegalArgumentException e){
+                System.out.println("잘못된 입력입니다.");
+            }
+        }
+    }
 }

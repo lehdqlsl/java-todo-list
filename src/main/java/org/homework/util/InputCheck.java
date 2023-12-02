@@ -14,4 +14,20 @@ public class InputCheck {
             throw new IllegalArgumentException();
         }
     }
+
+    public int checkViewOptionSelect(String input){
+        try {
+            int viewOptionNumber = checkValidNumber(input);
+            checkRangeViewOptionNumber(viewOptionNumber);
+            return viewOptionNumber;
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkRangeViewOptionNumber(int viewOptionNumber){
+        if(!(viewOptionNumber == 1 || viewOptionNumber == 2)){
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package org.homework.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ToDoRepository {
     private static final ToDoRepository instance = new ToDoRepository();
@@ -23,6 +25,10 @@ public class ToDoRepository {
 
     public ToDo getToDo(int inputID){
         return toDoMap.get(inputID);
+    }
+
+    public List<ToDo> getAllToDo(){
+        return new ArrayList<ToDo>(toDoMap.values());
     }
 
     public int deleteList(int inputID) {

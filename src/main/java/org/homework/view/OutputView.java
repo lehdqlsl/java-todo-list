@@ -2,6 +2,8 @@ package org.homework.view;
 
 import org.homework.model.ToDo;
 
+import java.util.List;
+
 public class OutputView {
     public void printAdd(int id) {
         System.out.println("할 일이 추가되었습니다. ID: " + id);
@@ -15,12 +17,18 @@ public class OutputView {
         }
     }
 
-    public void printView(ToDo toDo) {
+    public void printSingleView(ToDo toDo) {
         if (toDo == null) {
             System.out.println("해당 ID의 할 일이 없습니다.");
             return;
         }
         System.out.println("할 일 ID: " + toDo.getId() + " 내용: " + toDo.getWork());
+    }
+
+    public void printAllView(List<ToDo> allList){
+        for(ToDo toDo : allList){
+            System.out.println("할 일 ID: " + toDo.getId() + " 내용: " + toDo.getWork());
+        }
     }
 
     public void printStop() {
