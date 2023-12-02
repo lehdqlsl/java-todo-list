@@ -26,6 +26,10 @@ public class OutputView {
     }
 
     public void printAllView(List<ToDo> allList){
+        if (allList.isEmpty()) {
+            System.out.println("할 일이 하나도 없습니다.");
+            return;
+        }
         for(ToDo toDo : allList){
             System.out.println("할 일 ID: " + toDo.getId() + " 내용: " + toDo.getWork());
         }

@@ -36,10 +36,21 @@ public class InputView {
         }
     }
 
-    public int viewOptionSelect(){
+    public int selectViewOption(){
         while (true){
             try{
                 System.out.println("단일조회는 1번, 전체조회는 2번을 눌러주세요");
+                return inputCheck.checkViewOptionSelect(scanner.nextLine());
+            }catch (IllegalArgumentException e){
+                System.out.println("잘못된 입력입니다.");
+            }
+        }
+    }
+
+    public int selectOrderView(){
+        while (true){
+            try{
+                System.out.println("오래된 순서는 1번, 최근에 추가한 순서는 2번을 눌러주세요");
                 return inputCheck.checkViewOptionSelect(scanner.nextLine());
             }catch (IllegalArgumentException e){
                 System.out.println("잘못된 입력입니다.");
