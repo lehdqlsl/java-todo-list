@@ -1,56 +1,34 @@
 package org.homework.controller;
 
-import org.homework.model.ToDoList;
+import org.homework.Option.*;
+import org.homework.model.ToDoRepository;
 import org.homework.view.InputView;
 import org.homework.view.OutputView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ToDoListController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final ToDoList toDoList = new ToDoList();
+    private final ToDoRepository toDoRepository = ToDoRepository.getInstance();
+    private final Map<Options, OptionsInterface> optionHandler = new HashMap<>();
 
-    public boolean run() {
-        int selectNumber = inputView.selectOption();
-        return moveOption(selectNumber);
+    public ToDoListController(){
+        optionHandler.put(Options.ADD, new AddOption());
+        optionHandler.put(Options.DELETE, new DeleteOption());
+        optionHandler.put(Options.VIEW, new ViewOption());
+        optionHandler.put(Options.EXIT, new ExitOption());
+        optionHandler.put(Options.COMPLETE, new CompleteOption());
     }
 
-    public boolean moveOption(int selectNumber) {
-        if (selectNumber == 1) {
-            doAdd();
-            return true;
+    public void run(){
+        boolean stop = true;
+        while (stop){
+            OptionsInterface option = optionHandler.get(inputView.selectOption());
+            option.process();
+            stop = option.isContinue();
+            System.out.println("---------------------------------");
         }
-        if (selectNumber == 2) {
-            doDelete();
-            return true;
-        }
-        if (selectNumber == 3) {
-            doView();
-            return true;
-        }
-        if (selectNumber == 4) {
-            stop();
-        }
-        return false;
-    }
-
-    public void doAdd() {
-        int id = toDoList.addList(inputView.addInput());
-        outputView.printAdd(id);
-    }
-
-    public void doDelete() {
-        int deleteNumber = inputView.inputNumber();
-        int id = toDoList.deleteList(deleteNumber);
-        outputView.printDelete(id);
-    }
-
-    public void doView() {
-        int viewNumber = inputView.inputNumber();
-        int id = toDoList.viewList(viewNumber);
-        outputView.printView(id, toDoList.getToDoMap());
-    }
-
-    public void stop() {
-        outputView.printStop();
     }
 }

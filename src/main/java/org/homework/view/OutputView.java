@@ -1,6 +1,8 @@
 package org.homework.view;
 
-import java.util.HashMap;
+import org.homework.model.ToDo;
+
+import java.util.List;
 
 public class OutputView {
     public void printAdd(int id) {
@@ -15,12 +17,34 @@ public class OutputView {
         }
     }
 
-    public void printView(int id, HashMap<Integer, String> toDoMap) {
-        if (id < 0) {
+    public void printSingleView(ToDo toDo) {
+        if (toDo == null) {
             System.out.println("해당 ID의 할 일이 없습니다.");
-        } else {
-            System.out.println("할 일 ID: " + id + " 내용: " + toDoMap.get(id));
+            return;
         }
+        System.out.println("할 일 ID: " + toDo.getId() + " 내용: " + toDo.getWork());
+    }
+
+    public void printAllView(List<ToDo> allList){
+        if (allList.isEmpty()) {
+            System.out.println("할 일이 하나도 없습니다.");
+            return;
+        }
+        for(ToDo toDo : allList){
+            System.out.println("할 일 ID: " + toDo.getId() + " 내용: " + toDo.getWork());
+        }
+    }
+
+    public void printComplete(int id){
+        if(id == -1){
+            System.out.println("해당 ID의 할 일이 없습니다.");
+            return;
+        }
+        if(id == 0){
+            System.out.println("이미 완료된 ID입니다.");
+            return;
+        }
+        System.out.println("할 일이 완료 되었습니다. ID : " + id);
     }
 
     public void printStop() {
