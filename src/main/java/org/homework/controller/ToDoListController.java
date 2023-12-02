@@ -20,6 +20,7 @@ public class ToDoListController {
         optionHandler.put(Options.DELETE, new DeleteOption());
         optionHandler.put(Options.VIEW, new ViewOption());
         optionHandler.put(Options.EXIT, new ExitOption());
+        optionHandler.put(Options.COMPLETE, new CompleteOption());
     }
 
     public void run(){

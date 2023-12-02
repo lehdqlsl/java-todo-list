@@ -35,6 +35,18 @@ public class OutputView {
         }
     }
 
+    public void printComplete(int id){
+        if(id == -1){
+            System.out.println("해당 ID의 할 일이 없습니다.");
+            return;
+        }
+        if(id == 0){
+            System.out.println("이미 완료된 ID입니다.");
+            return;
+        }
+        System.out.println("할 일이 완료 되었습니다. ID : " + id);
+    }
+
     public void printStop() {
         System.out.println("프로그램을 종료합니다.");
     }

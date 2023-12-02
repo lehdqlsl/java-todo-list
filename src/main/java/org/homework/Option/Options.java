@@ -6,7 +6,8 @@ public enum Options {
     ADD("1"),
     DELETE("2"),
     VIEW("3"),
-    EXIT("4");
+    EXIT("4"),
+    COMPLETE("5");
 
     private final String optionNumber;
 

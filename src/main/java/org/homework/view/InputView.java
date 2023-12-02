@@ -12,7 +12,7 @@ public class InputView {
     public Options selectOption() {
         while (true) {
             try {
-                System.out.println("옵션을 선택하세요: 1.추가, 2.삭제, 3.조회, 4.종료");
+                System.out.println("옵션을 선택하세요: 1.추가, 2.삭제, 3.조회, 4.종료, 5.완료");
                 return Options.getOption(scanner.nextLine());
             } catch (IllegalArgumentException e) {
                 System.out.println("잘못된 입력입니다.");
