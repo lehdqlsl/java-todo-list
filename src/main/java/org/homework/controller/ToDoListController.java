@@ -1,55 +1,34 @@
 package org.homework.controller;
 
-import org.homework.enums.Options;
-import org.homework.model.ToDoList;
+import org.homework.Option.*;
+import org.homework.model.ToDo;
+import org.homework.model.ToDoRepository;
 import org.homework.view.InputView;
 import org.homework.view.OutputView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ToDoListController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final ToDoList toDoList = new ToDoList();
+    private final ToDoRepository toDoRepository = ToDoRepository.getInstance();
+    private final Map<Options, OptionsInterface> optionHandler = new HashMap<>();
 
-    public boolean run() {
-        Options option = inputView.selectOption();
-        return moveOption(option);
+    public ToDoListController(){
+        optionHandler.put(Options.ADD, new AddOption());
+        optionHandler.put(Options.DELETE, new DeleteOption());
+        optionHandler.put(Options.VIEW, new ViewOption());
+        optionHandler.put(Options.EXIT, new ExitOption());
     }
 
-    public boolean moveOption(Options option) {
-        if (Options.ADD.equals(option)) {
-            doAdd();
-            return true;
+    public void run(){
+        boolean stop = true;
+        while (stop){
+            OptionsInterface option = optionHandler.get(inputView.selectOption());
+            option.process();
+            stop = option.isContinue();
+            System.out.println("---------------------------------");
         }
-        if (Options.DELETE.equals(option)) {
-            doDelete();
-            return true;
-        }
-        if (Options.VIEW.equals(option)) {
-            doView();
-            return true;
-        }
-        if (Options.EXIT.equals(option)) {
-            stop();
-        }
-        return false;
-    }
-
-    public void doAdd() {
-        int id = toDoList.addList(inputView.addInput());
-        outputView.printAdd(id);
-    }
-
-    public void doDelete() {
-        int id = toDoList.deleteList(inputView.inputNumber());
-        outputView.printDelete(id);
-    }
-
-    public void doView() {
-        int id = toDoList.viewList(inputView.inputNumber());
-        outputView.printView(id, toDoList.getToDoMap());
-    }
-
-    public void stop() {
-        outputView.printStop();
     }
 }

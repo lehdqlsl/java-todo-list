@@ -1,6 +1,6 @@
 package org.homework.view;
 
-import org.homework.enums.Options;
+import org.homework.Option.Options;
 import org.homework.util.InputCheck;
 
 import java.util.Scanner;

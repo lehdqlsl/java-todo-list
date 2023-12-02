@@ -1,4 +1,4 @@
-package org.homework.enums;
+package org.homework.Option;
 
 import java.util.Arrays;
 
