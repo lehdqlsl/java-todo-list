@@ -5,10 +5,6 @@ import org.homework.view.InputView;
 import org.homework.view.OutputView;
 
 public class DeleteOption implements OptionsInterface{
-
-    private final ToDoRepository toDoRepository = ToDoRepository.getInstance();
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
     @Override
     public void process() {
         outputView.printDelete(toDoRepository.deleteList(inputView.inputNumber()));

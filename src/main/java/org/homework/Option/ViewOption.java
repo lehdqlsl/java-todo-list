@@ -17,9 +17,7 @@ public class ViewOption implements OptionsInterface{
     private final int KEYWORD = 3;
     private final int ASCENDING_OPTION = 1;
     private final int DESCENDING_OPTION = 2;
-    private final ToDoRepository toDoRepository = ToDoRepository.getInstance();
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+
 
     @Override
     public void process() {
