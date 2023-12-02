@@ -1,9 +1,6 @@
 package org.homework.Option;
 
 import org.homework.model.ToDo;
-import org.homework.model.ToDoRepository;
-import org.homework.view.InputView;
-import org.homework.view.OutputView;
 
 public class AddOption implements OptionsInterface{
 
