@@ -1,7 +1,7 @@
 package org.homework;
 
 public enum Option {
-    ADD("1"), DELETE("2"), FIND("3"), EXIT("4"), NONE("-1");
+    ADD("1"), DELETE("2"), FIND("3"), CHANGE_STATUS("4"),VIEWALL("5"), SEARCH("6"), EXIT("7"), NONE("-1");
 
     private final String value;
 
