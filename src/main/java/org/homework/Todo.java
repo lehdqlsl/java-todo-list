@@ -15,6 +15,7 @@ public class Todo {
         this.deadLine = deadLine;
     }
 
+    @Override
     public String toString() {
         return String.format("할 일 ID: [ %d ] 내용: [ %s ] 상태: [ %s ] 마감일: [ %s ]", id, contents, isStatus() ? "완료" : "미완료", deadLine);
     }
