@@ -23,16 +23,11 @@ public class OutputView {
     public void printFind(Todo todo) {
         System.out.println(String.format("%-5s %-30s %-10s %-10s", "ID", "내용", "상태", "마감일"));
         System.out.println("--------------------------------------------------------------");
-        String status = todo.isStatus() ? "완료" : "미완료";
-        System.out.println(String.format("%-5d %-30s %-10s %-10s", todo.getId(), todo.getContents(), status, todo.getDeadLine()));
+        System.out.println(String.format("%-5d %-30s %-10s %-10s", todo.getId(), todo.getContents(), todo.getStatus(), todo.getDeadLine()));
     }
 
     public void printChangeStatus(Todo todo) {
-        if (todo.isStatus()) {
-            System.out.println("할 일의 상태가 [ 완료 ] 로 변경되었습니다. ID : [ " + todo.getId() + " ]");
-        } else {
-            System.out.println("할 일의 상태가 [ 미완료 ] 로 변경되었습니다. ID : [ " + todo.getId() + " ]");
-        }
+        System.out.println("할 일의 상태가 [ " + todo.getStatus() + " ] 로 변경되었습니다. ID : [ " + todo.getId() + " ]");
     }
 
     public void printToDoList(List<Todo> todoList) {
@@ -40,8 +35,7 @@ public class OutputView {
             System.out.println(String.format("%-5s %-30s %-10s %-10s", "ID", "내용", "상태", "마감일"));
             System.out.println("--------------------------------------------------------------");
             for (Todo todo : todoList) {
-                String status = todo.isStatus() ? "완료" : "미완료";
-                System.out.println(String.format("%-5d %-30s %-10s %-10s", todo.getId(), todo.getContents(), status, todo.getDeadLine()));
+                System.out.println(String.format("%-5d %-30s %-10s %-10s", todo.getId(), todo.getContents(), todo.getStatus(), todo.getDeadLine()));
             }
         } else {
             System.out.println("오늘로부터 7일 이내의 할 일이 없습니다.");
@@ -53,8 +47,7 @@ public class OutputView {
             System.out.println(String.format("%-5s %-30s %-10s %-10s", "ID", "내용", "상태", "마감일"));
             System.out.println("--------------------------------------------------------------");
             for (Todo todo : todoList) {
-                String status = todo.isStatus() ? "완료" : "미완료";
-                System.out.println(String.format("%-5d %-30s %-10s %-10s", todo.getId(), todo.getContents(), status, todo.getDeadLine()));
+                System.out.println(String.format("%-5d %-30s %-10s %-10s", todo.getId(), todo.getContents(), todo.getStatus(), todo.getDeadLine()));
             }
         } else {
             System.out.println("검색 결과가 없습니다.");

@@ -5,19 +5,19 @@ import java.time.LocalDate;
 public class Todo {
     private int id;
     private String contents;
-    private boolean status;
+    private Status status;
     private LocalDate deadLine;
 
     public Todo(int id, String contents, LocalDate deadLine) {
         this.id = id;
         this.contents = contents;
-        this.status = false;
+        this.status = Status.미완료;
         this.deadLine = deadLine;
     }
 
     @Override
     public String toString() {
-        return String.format("할 일 ID: [ %d ] 내용: [ %s ] 상태: [ %s ] 마감일: [ %s ]", id, contents, isStatus() ? "완료" : "미완료", deadLine);
+        return String.format("할 일 ID: [ %d ] 내용: [ %s ] 상태: [ %s ] 마감일: [ %s ]", id, contents, status, deadLine);
     }
 
     public int getId() {
@@ -28,11 +28,11 @@ public class Todo {
         return contents;
     }
 
-    public boolean isStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
