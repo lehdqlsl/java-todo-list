@@ -1,25 +1,49 @@
 package org.homework;
 
-public class Todo {
-    private int id; // 고유번호
-    private String desc; // 할 일 내용
+import java.time.LocalDate;
 
-    // 객체 생성
-    public Todo(String desc) {
+public class Todo {
+    private int id;
+    private String desc;
+    private Status status;
+    private LocalDate dueDate;
+
+    public Todo(String desc, LocalDate dueDate) {
         this.desc = desc;
+        this.dueDate = dueDate;
+        this.status = Status.미완료;
     }
 
-    // 설정
     public void setId(int id) {
         this.id = id;
     }
 
-    // 반환
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     public int getId() {
         return id;
     }
 
     public String getDesc() {
         return desc;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d\t%s\t\t%s\t\t%s", id, desc, status, dueDate);
     }
 }
