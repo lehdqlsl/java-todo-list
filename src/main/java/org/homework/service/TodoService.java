@@ -1,70 +1,49 @@
 package org.homework.service;
 
-import org.homework.domain.InputMenu;
 import org.homework.domain.Todo;
+import org.homework.dto.AddTodoInput;
 import org.homework.repository.TodoRepository;
-import org.homework.view.InputView;
-import org.homework.view.OutputView;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TodoService {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    public int addTodo(AddTodoInput addTodoInput) {
+        String content = addTodoInput.getContent();
 
-    // todoMethod
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+        LocalDate endDate = LocalDate.parse(addTodoInput.getDateStr(), formatter);
 
-    public void addTodo() {
-        String content = inputView.addTodo();
-        int todoId = TodoRepository.addTodo(content);
-        outputView.addTodo(todoId);
+        return TodoRepository.addTodo(content, endDate);
     }
 
-    public void deleteTodo() {
-        int todoId = inputView.deleteTodo();
-        boolean isDeleted = TodoRepository.deleteTodo(todoId);
+    public void deleteTodo(int todoId) {
+        TodoRepository.deleteTodo(todoId)
+                .orElseThrow(NoSuchElementException::new);
+    }
 
-        if (isDeleted) {
-            outputView.deleteTodo(todoId);
-        } else {
-            outputView.getNullTodo();
+    public Todo getTodo(int todoId) {
+        return TodoRepository.getTodo(todoId)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    public List<Todo> getWeekTodo() {
+        return TodoRepository.getWeekTodoList();
+    }
+
+    public List<Todo> getSearchTodo(String keyword) {
+        return TodoRepository.getSearchTodoList(keyword);
+    }
+
+    public boolean updateTodo(Todo todo) {
+        if (!todo.isCompleted()) {
+            TodoRepository.updateTodoComplete(todo.getId());
+            return true;
         }
-    }
 
-    public void viewTodo() {
-        int todoId = inputView.getTodo();
-
-        if (TodoRepository.containsTodo(todoId)) {
-            Todo todo = TodoRepository.getTodo(todoId);
-            outputView.getTodo(todo);
-        } else {
-            outputView.getNullTodo();
-        }
-    }
-
-    public void updateTodo() {
-        int todoId = inputView.updateTodo();
-
-        if (TodoRepository.containsTodo(todoId)) {
-            Todo todo = TodoRepository.getTodo(todoId);
-            TodoRepository.updateTodoComplete(todoId);
-            outputView.updateCompleteTrue(todo);
-        } else {
-            outputView.getNullTodo();
-        }
-    }
-
-    // menuMethod
-
-    public InputMenu selectMenu() {
-        String menuValue = inputView.selectMenu();
-        return InputMenu.getInputMenu(menuValue);
-    }
-
-    public void exitMenu() {
-        outputView.exit();
-    }
-
-    public void invalidInputMenu() {
-        outputView.invalidInput();
+        return false;
     }
 }
