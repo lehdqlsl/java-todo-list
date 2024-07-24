@@ -1,3 +1,4 @@
+/*
 package org.homework;
 
 import java.util.HashMap;
@@ -17,17 +18,18 @@ public class Storage {
 
     protected void removeWork(Integer ID) {
         String result="";
-        if(workList.get(ID)==null){
+        if(!workList.containsKey(ID)){
             result = "== 해당 ID 값에 할당된 할 일이 없습니다. ==";
             System.out.println(result);
         }else {
             workList.remove(ID);
+            System.out.println("ID " + ID + "에 해당하는 할 일이 삭제되었습니다.");
         }
     }
 
     protected String searchWork(Integer ID) {
         String result="";
-        if(workList.get(ID)==null) {
+        if(!workList.containsKey(ID)) {
             result = "== 해당 ID 값에 할당된 할 일이 없습니다. ==";
         }else {
             result = workList.get(ID);
@@ -47,10 +49,8 @@ public class Storage {
     }
 
     protected int displayWorksNum() {
-        int result = 0;
-        result = workList.keySet().size();
-        return result;
+        return workList.keySet().size();
     }
 
-
 }
+*/
